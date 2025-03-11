@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Society Management</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body onload="checkAdminAccess()">
+    <div class="sidebar">
+        <h2>Admin Panel</h2>
+        <!-- <button class="toggle-btn" onclick="toggleSidebar()">☰</button> -->
+        <ul>
+            <li><a href="#" class="tab-button" onclick="showSection('dashboard')">Dashboard</a></li>
+            <li><a href="#" class="tab-button" onclick="showSection('pendingSocieties')">Pending Societies</a></li>
+            <li><a href="#" onclick="showSection('societyList')">Society List</a></li>
+            <li><a href="#"  onclick="showSection('communicationCenter')">Communication Center</a></li>
+            <li><a href="#" class="tab-button" onclick="showSection('scoreboard')">Leaderboard</a></li>
+            <li><a href="#" class="tab-button" onclick="showSection('userManagement')">User Management</a></li>
+            <li><a href="#" class="tab-button" onclick="showSection('activityLog')">Activity Log</a></li>
+            <!-- <li><a href="#" onclick="toggleDarkMode()">Toggle Dark Mode</a></li> -->
+            <li><a href="#" class="tab-button" onclick="showSection('settings')">Settings</a></li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <div id="dashboard" class="section">
+            <h3>Welcome to the Admin Dashboard</h3>
+            <p>Manage society registrations efficiently.</p>
+       
+<!-- Admin Login Popup -->
+    <div id="adminLoginPopup" class="popup">
+        <div class="popup-content">
+            <h3>Admin Login</h3>
+            
+            <label>Username:</label>
+            <input type="text" id="adminUsername" placeholder="Enter your username" autocomplete="off" readonly onfocus="this.removeAttribute('readonly')">
+            
+            <label>Email:</label>
+            <input type="email" id="adminEmail" placeholder="Enter your email" autocomplete="off" readonly onfocus="this.removeAttribute('readonly')">
+            
+            <button onclick="validateAdmin()">Login</button>
+        </div>
+    </div>
+
+
+        </div>
+        
+
+ <!-- Pending Societies Section -->
+ <div id="pendingSocieties" class="section" style="display:none;">
+    <h3>Pending Society Approvals</h3>
+    <table id="pendingSocietyTable">
+        <thead>
+            <tr>
+                <th>File Number</th>
+                <th>Society Name</th>
+                <th>Senior Treasurer</th>
+                <th>Bank Account</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Pending societies will be loaded dynamically -->
+        </tbody>
+    </table>
+</div>
+
+
+
+        <div id="societyList" class="section" style="display:none;">
+            
+            <h3>Registered Societies</h3>
+            <div style="display: block;">
+            <h4>Download Societies details as</h4>
+            <button onclick="downloadPDF()">PDF</button>
+            <button onclick="downloadExcel()">Excel</button>
+            </div>
+            <!-- Search bar for Society List -->
+            <input type="text" id="searchSocieties" placeholder="Search societies..." onkeyup="searchSocieties()">
+
+            <table id="societyTable">
+                <thead>
+                    <tr>
+                        <th>File Number</th>
+                        <th>Society Name</th>
+                        <th>Senior Treasurer</th>
+                        <th>Bank Account</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Data will be loaded dynamically -->
+                </tbody>
+            </table>
+            
+    <div id="viewSocietyModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Society Details</h2>
+            <p id="societyDetails"></p>
+            <button onclick="downloadSocietyPDF()">Download PDF</button>
+        </div>
+    </div>
+        </div>
+
+        <div id="userManagement" class="section" style="display:none;">
+            <h3>User Management</h3>
+            <button onclick="addAdmin()">Add Admin</button>
+            <table id="userTable">
+                <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Users will be loaded dynamically -->
+                </tbody>
+            </table>
+        </div>
+        
+        <!--communication center-->
+
+        <div id="communicationCenter" class="section" style="display:none;">
+            <h3>Communication Center</h3>
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="role" value="secretary"> Secretaries <span id="secretary_count"></span></label>
+                <label><input type="checkbox" name="role" value="president"> Presidents <span id="president_count"></span></label>
+                <label><input type="checkbox" name="role" value="treasurer"> Senior Treasurers <span id="treasurer_count"></span></label>
+            </div>
+            <input type="email" id="sender_email" placeholder="Enter your email" required>
+            <input type="text" id="subject" placeholder="Email Subject" required>
+            <textarea id="message" placeholder="Enter your message" required></textarea>
+            <button onclick="sendEmail()">Send Email</button>
+        </div>
+
+
+        <div id="activityLog" class="section" style="display:none;">
+            <h3>Activity Log</h3>
+            <ul id="logList"></ul>
+        </div>
+
+        <div id="settings" class="section" style="display:none;">
+            <h3>Settings</h3>
+            <p>Manage application settings here.</p>
+        </div>
+
+
+    <div id="scoreboard" class="section" style="display:none;">
+    <h2>Review Events</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Event Name</th>
+                <th>Venue</th>
+                <th>Time</th>
+                <th>Society</th>
+                <th>Score</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="adminTableBody"></tbody>
+    </table>
+    
+    <!-- Add to admin panel sections -->
+    <div id="eventManagement" class="section" style="display:none;">
+        <h3>Event Management</h3>
+        <button onclick="showSection('addEvent')">Add New Event</button>
+        <!-- Existing event review table -->
+    </div>
+
+    <div id="addEvent" class="section" style="display:none;">
+        <h3>Add New Event</h3>
+        <input type="text" id="adminEventName" placeholder="Event Name">
+        <input type="text" id="adminEventVenue" placeholder="Venue">
+        <input type="datetime-local" id="adminEventTime">
+        <select id="adminSocietySelect"></select>
+        <input type="file" id="adminEventFiles" multiple>
+        <button onclick="submitAdminEvent()">Submit Event</button>
+    </div>
+
+    <!-- Search bar for Leaderboard -->
+    <input type="text" id="searchLeaderboard" placeholder="Search leaderboard..." onkeyup="searchLeaderboard()">
+
+    <h2>Leaderboard</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Society</th>
+                <th>Points</th>
+            </tr>
+        </thead>
+        <tbody id="leaderboard"></tbody>
+    </table>
+</div>
+</div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.5/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+    <script src="admin.js"></script>
+    <script src="notifications.js"></script>
+    
+    <script>
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(section => {
+                section.style.display = 'none';
+            });
+            document.getElementById(sectionId).style.display = 'block';
+        }
+        function closeModal() {
+            document.getElementById("viewSocietyModal").style.display = "none";
+        }
+    </script>
+</body>
+</html>

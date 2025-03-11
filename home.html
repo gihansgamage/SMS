@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Society Management System</title>
+    <link rel="stylesheet" href="home.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1 class="fade-in">University Society Management</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="slide-in">Register a Society</a></li>
+                <li><a href="#societyList" class="slide-in">Societies</a></li>
+                <li><a href="#upcomingEvents" class="slide-in">Upcoming Events</a></li>
+                <li><a href="admin.html" class="admin-btn">Admin Panel</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section (Full-Width) -->
+    <section id="hero">
+        <div class="hero-content">
+            <h2 class="fade-in">Explore, Connect & Grow with University Societies</h2>
+            <p class="fade-in">Join a society and be a part of something bigger.</p>
+            <a href="index.html" class="cta-button">Join Now</a>
+        </div>
+    </section>
+
+    <!-- Featured Societies (Block Section) -->
+    <section class="block-section" id="featuredSocieties">
+        <h2>Popular Societies</h2>
+        <div class="block-content" id="featuredSocietyList">
+            <!-- Societies will be loaded dynamically -->
+        </div>
+    </section>
+
+    <!-- Registered Societies (Block Section) -->
+    <section class="block-section" id="societyList">
+        <h2>All Registered Societies</h2>
+        <div class="block-content">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Society Name</th>
+                        <th>Senior Treasurer</th>
+                    </tr>
+                </thead>
+                <tbody id="registeredSocietyTable">
+                    <!-- Societies will be loaded dynamically -->
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Upcoming Events (Block Section) -->
+    <section class="block-section" id="upcomingEvents">
+        <h2>Upcoming Events</h2>
+        <div class="block-content" id="eventList">
+            <!-- Events will be loaded dynamically -->
+        </div>
+    </section>
+
+    <script src="home.js"></script>
+    <script>
+        // Smooth Animations
+        document.addEventListener("DOMContentLoaded", function () {
+            gsap.from(".fade-in", { opacity: 0, duration: 1.5, y: -20, stagger: 0.3 });
+            gsap.from(".slide-in", { opacity: 0, duration: 1.5, x: -20, stagger: 0.2 });
+        });
+    </script>
+</body>
+</html>

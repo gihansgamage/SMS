@@ -1,0 +1,332 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    display: flex;
+    transition: all 0.3s;
+}
+
+.sidebar {
+    width: 200px;
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    color: white;
+    height: 100vh;
+    padding: 20px;
+    position: fixed;
+    transition: all 0.3s;
+    overflow-y: auto;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+    margin-right: 50px;
+}
+
+.sidebar h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 22px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin: 15px 0;
+}
+
+.sidebar ul li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 12px;
+    border-radius: 5px;
+    transition: background 0.3s, transform 0.2s;
+    font-size: 16px;
+}
+
+.sidebar ul li a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+}
+
+.main-content {
+    margin-left: 270px;
+    padding: 20px;
+    width: calc(100% - 270px);
+    transition: all 0.3s;
+}
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+input[type="text"] {
+    padding: 12px;
+    width: 60%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: all 0.3s;
+}
+
+input[type="text"]:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+}
+
+button {
+    padding: 10px 15px;
+    border: none;
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s, transform 0.2s;
+    font-size: 14px;
+}
+
+button:hover {
+    background: linear-gradient(135deg, #0056b3, #003f80);
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+#societyTable, #userTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: white;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#societyTable th, #societyTable td, #userTable th, #userTable td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+    font-size: 14px;
+}
+
+#societyTable th, #userTable th {
+    background: #007bff;
+    color: white;
+    font-weight: bold;
+}
+
+#societyTable tr:nth-child(even), #userTable tr:nth-child(even) {
+    background: #f2f2f2;
+}
+
+button:nth-child(2) {
+    background: #dc3545;
+}
+
+button:nth-child(2):hover {
+    background: #c82333;
+}
+
+.dark-mode {
+    background-color: #1a1a1a;
+    color: white;
+}
+
+.dark-mode .sidebar {
+    background: linear-gradient(135deg, #222, #444);
+}
+
+.dark-mode .main-content {
+    background-color: #121212;
+    color: white;
+}
+
+.dark-mode #socityTable {
+    color: #121212;
+}
+
+.dark-mode button {
+    background: linear-gradient(135deg, #555, #777);
+}
+
+.dark-mode button:hover {
+    background: linear-gradient(135deg, #777, #999);
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 200px;
+    }
+    .main-content {
+        margin-left: 210px;
+        width: calc(100% - 210px);
+    }
+}
+.checkbox-group {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin-bottom: 15px;
+}
+
+.checkbox-group label {
+    margin: 5px 0;
+}
+
+input, textarea {
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+/* Style for search bars */
+input[type="text"]#searchSocieties, 
+input[type="text"]#searchLeaderboard {
+    width: 30%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 50px;
+    font-size: 16px;
+}
+
+/* Popup Background */
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    justify-content: center;
+    align-items: center;
+}
+
+/* Popup Content */
+.popup-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 300px;
+}
+
+/* Input Fields */
+.popup-content input {
+    width: 90%;
+    padding: 8px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Button */
+.popup-content button {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.popup-content button:hover {
+    background: #0056b3;
+}
+
+
+/* Leaderboard Styling */
+.leaderboard-header {
+    color: #2c3e50;
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.leaderboard-header i {
+    margin-right: 1rem;
+}
+
+.leaderboard-container {
+    background: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    margin: 2rem 0;
+}
+
+.leaderboard-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.leaderboard-table th {
+    background: #3498db;
+    color: white;
+    padding: 1rem;
+    text-align: left;
+}
+
+.leaderboard-table td {
+    padding: 1rem;
+    border-bottom: 1px solid #ecf0f1;
+}
+
+.leaderboard-table tr:hover {
+    background-color: #f8f9fa;
+}
+
+.gold { color: #ffd700; }
+.silver { color: #c0c0c0; }
+.bronze { color: #cd7f32; }
+
+.submit-btn {
+    background: #27ae60;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.submit-btn:hover {
+    background: #219a52;
+}
+
+.event-form {
+    background: #f8f9fa;
+    padding: 2rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+}

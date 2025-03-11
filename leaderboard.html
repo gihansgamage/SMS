@@ -1,0 +1,77 @@
+<!-- leaderboard.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Society Leaderboard</title>
+    <link rel="stylesheet" href="admin.css">
+    <!-- Add Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container" style="display: inline-block;">
+        <h1 class="leaderboard-header"><i class="fas fa-trophy"></i> Society Leaderboard</h1>
+
+        <!-- Submit Event Section -->
+        <div class="event-form">
+            <h2>Submit Event Info</h2>
+            <div class="form-group">
+                <select id="societyName">
+                    <option value="">Select Society</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="text" id="eventName" placeholder="Event Name">
+            </div>
+            <div class="form-group">
+                <input type="text" id="venue" placeholder="Venue">
+            </div>
+            <div class="form-group">
+                <input type="datetime-local" id="time">
+            </div>
+            <div class="form-group">
+                <input type="file" id="eventFiles" multiple accept=".pdf,.xlsx,.jpg,.png">
+                <small>Upload images, badge plans (PDF/Excel)</small>
+            </div>
+            <button class="submit-btn" onclick="submitEvent()">Submit Event</button>
+        </div>
+
+        <!-- Leaderboard Table -->
+        <div class="leaderboard-container" style="display: inline-flexbox">
+            <table class="leaderboard-table">
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Society</th>
+                        <th>Points</th>
+                        <th>Badge</th>
+                    </tr>
+                </thead>
+                <tbody id="leaderboard"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Include leaderboard.js -->
+    <script src="leaderboard.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Populate society dropdown
+            const societies = JSON.parse(localStorage.getItem("societies")) || [];
+            const dropdown = document.getElementById("societyName");
+            
+            societies.forEach(society => {
+                const option = document.createElement("option");
+                option.value = society.societyName;
+                option.textContent = society.societyName;
+                dropdown.appendChild(option);
+            });
+        
+            // Initialize leaderboard
+            leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || {};
+            updateLeaderboard();
+        });
+        </script>
+</body>
+</html>

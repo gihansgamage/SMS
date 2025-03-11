@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Society Registration</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Office Use Section -->
+        <div class="office-use">
+            <h2>FOR OFFICE USE ONLY</h2>
+            <div class="form-row">
+                <label>FILE NUMBER: 
+                    <span id="fileNumber">SS-<span id="autoCode"></span></span>
+                </label>
+                <label>&emsp;&emsp;  DATE OF ISSUE: 
+                    <span id="issueDate"></span>
+                </label>
+                <label>&emsp;&emsp;  DATE OF RECEIPT : 
+                    <!-- <input type="text" id="receiptDate" class="manual-input"> -->
+                </label>
+            </div>
+        </div>
+
+        <!-- Main Form -->
+        <div class="main-form">
+            <!-- Sections 1-5 with improved structure -->
+            <div class="form-section">
+                <h3>1. Name of the Society</h3>
+                <input type="text" id="societyName" required>
+            </div>
+
+            <div class="form-section">
+                <h3>2. Aims and Objectives</h3>
+                <textarea id="aimsObjectives" rows="4"></textarea>
+            </div>
+
+            <!-- Senior Treasurer Section -->
+            <div class="form-section grid-section">
+                <h3>3. Senior Treasurer</h3>
+                <div class="form-row">
+                    <select id="treasurerTitle">
+                        <option>Prof.</option>
+                        <option>Dr.</option>
+                        <option>Mr.</option>
+                        <option>Mrs.</option>
+                        <option>Miss</option>
+                    </select>
+                    <input type="text" id="treasurerName" placeholder="Full Name" required>
+                    <input type="email" id="treasurerMail" placeholder="Email" required>
+                </div>
+                <!-- Add other treasurer fields -->
+            </div>
+
+            <!-- Advisory Board Section -->
+            <div class="form-section">
+                <h3>4. Advisory Board Members</h3>
+                <div id="advisoryBoard">
+                    <div class="advisory-row">
+                        <input type="text" placeholder="Name" class="adv-name">
+                        <input type="text" placeholder="Designation" class="adv-designation">
+                        <input type="text" placeholder="Department" class="adv-department">
+                    </div>
+                </div>
+                <button class="add-btn" onclick="addAdvisoryRow()">+ Add Member</button>
+            </div>
+
+            <!-- Bank Details Section -->
+            <div class="form-section grid-section">
+                <h3>5. Bank Details</h3>
+                <div class="form-row">
+                    <input type="text" id="bankAccount" placeholder="Account Number">
+                    <input type="text" id="bankName" placeholder="Bank Name">
+                </div>
+            </div>
+        </div>
+
+
+<!---------------------------------------------------------------------------------->
+
+<!----------------------------------------------------->
+
+        <!-- Action Buttons -->
+        <div class="action-btns">
+            <button class="btn secondary" onclick="saveDraft()">Sending for Approval</button>
+            <button class="btn primary" onclick="generatePDF()">Download PDF</button>
+        </div>
+    </div>
+    <!-- Required Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.5/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

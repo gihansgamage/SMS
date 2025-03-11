@@ -1,0 +1,38 @@
+document.getElementById("applicationDate").value = new Date().toLocaleString();
+
+function addRow() {
+    let board = document.getElementById("advisoryBoard");
+    let div = document.createElement("div");
+    div.classList.add("member");
+    div.innerHTML = `
+        <input type="text" placeholder="Name" class="memberName" required>
+        <input type="text" placeholder="Designation" class="memberDesignation" required>
+        <input type="text" placeholder="Department" class="memberDepartment" required>
+    `;
+    board.appendChild(div);
+}
+
+document.getElementById("registrationForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+    let formData = new FormData(event.target);
+    let formObject = {};
+    formData.forEach((value, key) => {
+        formObject[key] = value;
+    });
+    localStorage.setItem("societyForm", JSON.stringify(formObject));
+    alert("Form data saved!");
+});
+
+function previewForm() {
+    let formData = JSON.parse(localStorage.getItem("societyForm"));
+    if (formData) {
+        console.log("Preview:", formData);
+        alert("Preview data in console");
+    } else {
+        alert("No data available to preview!");
+    }
+}
+
+function downloadPDF() {
+    alert("PDF generation feature coming soon!");
+}
