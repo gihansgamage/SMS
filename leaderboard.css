@@ -1,46 +1,149 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
-    background-color: #f4f4f4;
-}
+        /* General styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
 
-.container {
-    max-width: 800px;
-    margin: auto;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
+        h1 {
+            color: #800000;
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
+        .event-form, .leaderboard-container {
+            max-width: 1000px;
+            margin: 30px auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
 
-table, th, td {
-    border: 1px solid black;
-}
+        .form-group {
+            margin-bottom: 15px;
+        }
 
-th, td {
-    padding: 10px;
-    text-align: center;
-}
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            margin-top: 5px;
+            font-size: 1em;
+        }
+        #eventFile{
+            color: #800000;
+        }
 
-.form-group {
-    margin-bottom: 10px;
-}
+        .form-group input[type="file"] {
+            padding: 8px;
+        }
 
-button {
-    background-color: #28a745;
-    color: white;
-    padding: 10px;
-    border: none;
-    cursor: pointer;
-    margin-top: 10px;
-}
+        .submit-btn {
+            background-color: #ffcc00;
+            color: black;
+            padding: 12px 50px;
+            border: none;
+            font-size: 1.1em;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
 
-button:hover {
-    background-color: #218838;
-}
+        .submit-btn:hover {
+            background-color: #ffb300;
+            transform: scale(1.05);
+        }
+
+        .leaderboard-header {
+            color: #800000;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .leaderboard-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .leaderboard-table th, .leaderboard-table td {
+            padding: 15px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        .leaderboard-table th {
+            background-color: #ffcc00;
+            color: white;
+        }
+
+        .leaderboard-table tbody tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .leaderboard-table tbody tr:hover {
+            background-color: #f1f1f1;
+            cursor: pointer;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .event-form, .leaderboard-container {
+                padding: 20px;
+            }
+
+            .submit-btn {
+                width: 100%;
+                padding: 10px;
+            }
+
+            .leaderboard-table th, .leaderboard-table td {
+                font-size: 0.9em;
+                padding: 10px;
+            }
+        }
+
+        .addingEvent {
+            display: flex;
+            align-items: center;
+            justify-items: self-end;
+            text-align: left;
+            gap: 50px; /* Adds space between the button and text */
+        }
+
+        .cta-button2 {
+            background: #800000;
+            color: rgb(255, 255, 255);
+            padding: 10px 55px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 204, 0, 0.3);
+            letter-spacing: 0.5px;
+            width: 110px; /* Set a fixed width */
+            text-align: center; /* Ensure text stays centered */
+            display: inline-block; /* Ensures width applies correctly */
+        }
+        
+        
+        .cta-button2:hover {
+            background: #ec1710;
+            
+        }
+
+        /* Medal colors */
+        .gold { color: #FFD700; }
+        .silver { color: #C0C0C0; }
+        .bronze { color: #CD7F32; }
+
+        .fa-medal {
+            font-size: 1.5em;
+        }

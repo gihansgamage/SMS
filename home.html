@@ -6,28 +6,116 @@
     <title>Home - Society Management System</title>
     <link rel="stylesheet" href="home.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <!-- Add Font Awesome in head section -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
-        <h1 class="fade-in">University Society Management</h1>
+        <!-- <div id="google_translate_element"></div>
+
+<script>
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'en,si,ta'}, 'google_translate_element');
+}
+</script>
+
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+-->
+<div id="particles-js"></div>
+<div id="hero2">
+    <h1 class="fade-in">University Society Management System</h1> 
+    <nav>
+        <ul>
+            <li><a href="#societyList" class="slide-in">Registered Societies</a></li>
+            <li><a href="#societyLeaderboard" class="slide-in">Leaderboard</a></li>
+            <li><a href="#upcomingEvents" class="slide-in">Upcoming Events</a></li>
+            <li><a href ="#aboutUs" class ="slide-in">About us</a></li>
+            <li><a href ="#footer" class ="slide-in">Contact us</a></li>
+            <li><a href="admin.html" class="admin-btn" target="_blank">Admin Panel</a></li>
+        </ul>
+    </nav>
+</div>
+
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<script>
+particlesJS("particles-js", {
+    particles: {
+        number: { value: 100 },
+        size: { value: 3 },
+        move: { speed: 1 },
+        color: { value: "#ffcb43" },
+        line_linked: { enable: true, color: "#c78209" }
+    }
+});
+</script>
+
+
+
+<!-- 
+        <h1 class="fade-in">University Society Management System</h1> 
         <nav>
             <ul>
                 <li><a href="index.html" class="slide-in">Register a Society</a></li>
                 <li><a href="#societyList" class="slide-in">Societies</a></li>
                 <li><a href="#upcomingEvents" class="slide-in">Upcoming Events</a></li>
-                <li><a href="admin.html" class="admin-btn">Admin Panel</a></li>
+                <li><a href="admin.html" class="admin-btn" target ="blank">Admin Panel</a></li>
             </ul>
-        </nav>
+        </nav> -->
     </header>
 
     <!-- Hero Section (Full-Width) -->
     <section id="hero">
         <div class="hero-content">
+
             <h2 class="fade-in">Explore, Connect & Grow with University Societies</h2>
-            <p class="fade-in">Join a society and be a part of something bigger.</p>
+            <h3 class="fade-in">Join a society and be a part of something bigger.<br></h3>
+            
             <a href="index.html" class="cta-button">Join Now</a>
         </div>
     </section>
+
+
+    <section class = "block-section2" id = "joinSocities">
+        <h2 class="fade-in">Register Your Societies</h2>
+        <p class="fade-in">Submit your society details and get officially registered.</p>
+        <a href="index.html" class="cta-button2">Register Now</a>    
+    </section>
+
+    <section class = "block-section2" id = "joinSocities">
+        <h2 class="fade-in">Renewal Society</h2>
+        <p class="fade-in">Renew your existing society’s registration for continued recognition.</p>
+        <a href="index.html" class="cta-button2">Renewal Now</a>    
+    </section>
+
+    <section class = "block-section2" id = "joinSocities">
+        <h2 class="fade-in">Explore Societies</h2>
+        <p class="fade-in">Discover and connect with various university societies.</p>
+        <a href="#societyList" class="cta-button2">Explore Now</a>    
+    </section>
+
+    <section class = "block-section2" id = "joinSocities">
+        <h2 class="fade-in">Permission Request</h2>
+        <p class="fade-in">Secure approval to organize events or functions quickly, smoothly, and responsibly.</p>
+        <a href="Event_Permision.html" class="cta-button2">Get Permission</a>    
+    </section>
+    
+     <!-- Notice Board -->
+        <section class="notice-section" id="noticeBoard">
+            <h2>Notice Board</h2>
+            <div class="notice-content" id="noticeBoardContent">
+                <ul>
+                    <li>New Wardens, Senior Academic Sub Warden, Academic Sub Warden 2025</li>
+                    <li>New  Registration & Renewal of Students Societies Academic Year 2024/2025 (Application)</li>
+                    <li>New Now You Can Check the Mahapola & Bursary Payment List </li>
+                    <li>Concessionary Season Tickets are issued from 25th to 5 of every Month in the Students Services Division</li>
+                    <h4>Only those who do not have University residence facility are eligible to get the season tickets </h4>
+                    <li>Bursary Application </li>
+                    <li>Field Trip Events Permission Application</li>
+                    <li>Temporary Staff Hall Accommodation</li>
+                </ul>
+            </div>
+        </section>
 
     <!-- Featured Societies (Block Section) -->
     <section class="block-section" id="featuredSocieties">
@@ -40,12 +128,19 @@
     <!-- Registered Societies (Block Section) -->
     <section class="block-section" id="societyList">
         <h2>All Registered Societies</h2>
+           <!-- Society Count Section -->
+           <section id="societyCount">
+            <div class="count-container" id="societyCounter">0</div>
+            <div class="count-text">Societies Registered Now</div>
+            <!-- <p>Join our growing community of student organizations</p> -->
+        </section>         
         <div class="block-content">
             <table>
                 <thead>
                     <tr>
                         <th>Society Name</th>
                         <th>Senior Treasurer</th>
+                        <th>Visit Website</th>
                     </tr>
                 </thead>
                 <tbody id="registeredSocietyTable">
@@ -58,10 +153,107 @@
     <!-- Upcoming Events (Block Section) -->
     <section class="block-section" id="upcomingEvents">
         <h2>Upcoming Events</h2>
-        <div class="block-content" id="eventList">
+        <div class="block-content-upcoming" id="eventList">
             <!-- Events will be loaded dynamically -->
         </div>
     </section>
+
+    <!-- Society Leaderboard (New Section) -->
+
+
+<!-- Leaderboard Section -->
+<section class="block-section" id="societyLeaderboard">
+    <h2>Society Leaderboard</h2>
+    <div class="block-content">
+        <div class="leaderboard-container">
+            <table class="leaderboard-table">
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Society</th>
+                        <th>Points</th>
+                        <th>Badge</th>
+                    </tr>
+                </thead>
+                <tbody id="leaderboard"></tbody>
+            </table>
+        </div>
+        <div class = "addingEvent">
+            <h3>Add your events, earn points, and grow your society’s rank! Stay active, organize more events, and climb to the top. 🚀🏆</h3>
+            <a href="leaderboard.html" class="cta-button2">Submit Event</a>   
+        </div>
+    </div>
+
+</section>
+
+<!-- Include leaderboard.js -->
+<script src="leaderboard.js"></script>
+
+
+
+    <section class="block-section" id="aboutUs">
+        <h2>About US</h2>
+        <div class="block-content" id="eventList">
+            <h1>Mission</h1>
+            <p>The Mission of the Student Services Division is to provide timely, accurate, and consistently accessible services to students through the effective use of existing facilities and resources.</p>
+            
+            <h2>Services</h2>
+            <ul>
+                <li>Mahapola</li>
+                <li>Bursary</li>
+                <li>Student Union & Societies</li>
+                <li>Staff Accommodation</li>
+                <li>Medals & Prizes</li>
+            </ul>
+            
+            <h2>Overview</h2>
+            <h3>What are the main functions?</h3>
+            <p>Providing assistance and services to undergraduate students of the University.</p>
+            
+            <h3>The Services Provided</h3>
+            <ul>
+                <li>Coordination of Mahapola Scholarship payments.</li>
+                <li>Processing and payment of Bursaries to the Students.</li>
+                <li>Coordination and processing of scholarships and studentships for needy students.</li>
+                <li>Coordination of awarding Gold Medals, Prizes, and Scholarships for students at the Convocation.</li>
+                <li>Coordination of awarding scholarships, prizes, and medals for meritorious performance.</li>
+                <li>Annual registration and renewal of Student Societies.</li>
+                <li>Issuing concessional season tickets for buses and trains.</li>
+                <li>Providing accommodation for temporary academic staff members.</li>
+                <li>Assist in the appointment of wardens and student welfare officers.</li>
+                <li>Coordination of academic and cultural activities with student participation.</li>
+                <li>Assist in the process of appointing Proctors and Student Counsellors.</li>
+                <li>Coordination for the appointment of the Arts Council.</li>
+                <li>Organization of the Annual Drama Festival.</li>
+                <li>Coordination of Career Guidance Advisory Committee meetings.</li>
+                <li>Coordination work for the Student Support Services and Welfare Systems.</li>
+                <li>Coordination and processing of student union elections.</li>
+                <li>Assisting Needy Student Programs.</li>
+            </ul>
+            
+            <h3>Committees & Coordination</h3>
+            <ul>
+                <li>Student Support System and Welfare Advisory Committee</li>
+                <li>Career Guidance Advisory Committee</li>
+                <li>Arts Council</li>
+                <li>Scholarships Sub-Committee</li>
+                <li>COVID-19 Management Committee</li>
+                <li>Rag Prevention Committee</li>
+                <li>Wardens and Sub-Wardens Committee</li>
+                <li>Proctor and Deputy Proctors Committee</li>
+                <li>Senior Student Counsellors Committee</li>
+                <li>Peradeniya University Student Union (PSU) Meetings</li>
+            </ul>
+            
+            <h2>Whom the services are provided?</h2>
+            <p>Mainly for the entire student community of the University and academic staff.</p>
+        </div>
+    </section>
+
+
+
+    <button id="upButton" onclick="scrollToTop()">🢁</button>
+
 
     <script src="home.js"></script>
     <script>
@@ -72,4 +264,79 @@
         });
     </script>
 </body>
+
+<footer id = "footer">
+    <div class="footer-container">
+        <!-- Left Side - Contact Info -->
+        <div class="footer-content">
+            <h3>Student Services Division</h3>
+            <p>University of Peradeniya<br>
+                PO. Box 20400, Peradeniya, Sri Lanka</p>
+
+            <p><i class="fas fa-phone"></i> <strong>Phone:</strong> +94 81 239 2431 | +94 81 239 2322</p>
+            <p><i class="fas fa-phone-alt"></i> <strong>Ext.:</strong> 2431 / 2322</p>
+            <p><i class="fas fa-envelope"></i> <strong>Email:</strong> 
+                <a href="mailto:chandukanr@gmail.com">chandukanr@gmail.com</a><br>
+                <a href="mailto:drsspdn@gmail.com">drsspdn@gmail.com (Office)</a>
+            </p>
+            
+            <!-- Social Media Links -->
+            <div class="social-icons">
+                <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+
+        <!-- Right Side - Contact Form -->
+    <!-- Footer Contact Form -->
+    <div class="footer-form">
+        <h3>Contact Us</h3>
+        <form id="contact-form">
+            <input type="text" id="name" name="name" placeholder="Your Name" required>
+            <input type="email" id="email" name="email" placeholder="Your Email" required>
+            <textarea id="message" name="message" placeholder="Your Message" rows="4" required></textarea>
+            <button type="submit">Send</button>
+        </form>
+        <p id="form-status"></p>
+</div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <p>Copyright &copy; <span id="year"></span> Student Services Division, University of Peradeniya</p>
+    </div>
+</footer>
+<script>
+    document.getElementById("contact-form").addEventListener("submit", function(event) {
+        event.preventDefault();
+    
+        let formData = new FormData(this);
+        let statusMsg = document.getElementById("form-status");
+    
+        fetch("send_email.php", {
+            method: "POST",
+            body: formData
+        })
+        .then(response => response.text())
+        .then(data => {
+            if (data.trim() === "success") {
+                statusMsg.style.color = "green";
+                statusMsg.textContent = "✅ Message sent successfully!";
+                document.getElementById("contact-form").reset();
+            } else {
+                statusMsg.style.color = "red";
+                statusMsg.textContent = "❌ Failed to send message. Try again!";
+            }
+        })
+        .catch(error => {
+            statusMsg.style.color = "red";
+            statusMsg.textContent = "❌ Error occurred. Please try again.";
+        });
+    });
+    </script>
+    
+
+
 </html>

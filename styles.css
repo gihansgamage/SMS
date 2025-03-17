@@ -1,8 +1,9 @@
 :root {
     --primary-color: #2c3e50;
     --secondary-color: #3498db;
-    --background-color: #f8f9fa;
+    --background-color: #f8f9fa;  
 }
+
 
 body {
     font-family: 'Segoe UI', system-ui;
@@ -19,6 +20,68 @@ body {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
+/* Cover Section */
+.cover-section {
+    text-align: center;
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    padding: 40px 20px;
+    border-radius: 10px;
+    color: #333;
+    font-family: 'Arial', sans-serif;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.cover-section h1 {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.cover-section span {
+    color: #800000;
+}
+
+.welcome-text {
+    font-size: 18px;
+    margin: 10px 0;
+    font-style: italic;
+}
+
+
+
+/* Buttons */
+.buttons {
+    margin-top: 20px;
+}
+
+.home-btn, .get-started-btn {
+    font-size: 16px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+    transition: 0.3s;
+}
+
+.home-btn {
+    background: #6c757d;
+    color: white;
+}
+
+.home-btn:hover {
+    background: #5a6268;
+}
+
+.get-started-btn {
+    background: #800000;
+    color: white;
+}
+
+.get-started-btn:hover {
+    background: #a00000;
+}
+
 .office-use {
     background: #fff9e6;
     padding: 1.5rem;
@@ -33,6 +96,38 @@ body {
     background: var(--background-color);
     border-radius: 8px;
     border: 1px solid #dee2e6;
+}
+
+
+.form-section2 {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: var(--background-color);
+    border-radius: 8px;
+    border: 1px solid #dee2e6;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-top: 10px;
+    color: #555;
+}
+
+.input-field {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.input-field:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
 .grid-section .form-row {
@@ -52,8 +147,41 @@ body {
     border: 1px solid #dee2e6;
 }
 
+.cm-row {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background: white;
+    border-radius: 6px;
+    border: 1px solid #dee2e6;
+}
+
+.rm-row {
+    display: grid;
+    grid-template-columns: 0.2fr 1fr 1.8fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background: white;
+    border-radius: 6px;
+    border: 1px solid #dee2e6;
+}
+
+.plannedActivity-row {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background: white;
+    border-radius: 6px;
+    border: 1px solid #dee2e6;
+}
+
 .add-btn {
-    background: var(--secondary-color);
+    background: var(--secondary-color,);
     color: white;
     border: none;
     padding: 0.5rem 1rem;
@@ -92,6 +220,35 @@ body {
     color: var(--primary-color);
 }
 
+/* Button Hover Effects */
+.primary:hover {
+    background: #0056b3;
+}
+
+.secondary:hover {
+    background: #f0b1b1;
+}
+
+.primary1 {
+    background: var(--primary-color);
+    color: white;
+}
+
+.secondary1 {
+    background: #e9ecef;
+    color: var(--primary-color);
+}
+
+/* Button Hover Effects */
+.primary1:hover {
+    background: #0056b3;
+}
+
+.secondary1:hover {
+    background: #f0b1b1;
+}
+
+
 input, select, textarea {
     padding: 0.75rem;
     border: 1px solid #ced4da;
@@ -108,3 +265,74 @@ input:focus, select:focus, textarea:focus {
 }
 
 
+/* Message Container */
+.message-container {
+    margin-top: 15px;
+    padding: 10px;
+    display: none;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
+}
+
+/* Success Message */
+.message-container.success {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+/* Error Message */
+.message-container.error {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* Fade-in Animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.message-container.show {
+    display: block;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+
+/* Regulations Modal */
+.modal {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: white;
+    padding: 2rem;
+    width: 90%;
+    max-width: 800px;
+    border-radius: 8px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+/* Keep other modal styles from previous answer */
+
+
+
+.modal-button{
+    color: #007bff;
+}
+.acceptance-section2{
+    display: inline-flex;
+    width: 30px;
+}

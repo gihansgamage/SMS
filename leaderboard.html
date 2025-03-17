@@ -1,56 +1,40 @@
-<!-- leaderboard.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Society Leaderboard</title>
-    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="leaderboard.css">
     <!-- Add Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <div class="container" style="display: inline-block;">
+
+    <div class="leaderboard-container">
+        <div class = "addingEvent">
+            <h2>Welcome to Society Leaderboard 🌟🏆</h2>
+           <a href="home.html" class="cta-button2">Home</a>   
+           <a href="#submitEvent" class="cta-button2">Submit Event</a> 
+        </div>
+        
+        <h4>Track your society’s progress and compete for the top rank! Add your events, earn points, and boost your society’s position. Stay active, organize more events, and showcase your achievements. The more you engage, the higher you rise! 🚀🔥</h2>
+        </h4>
+     </div>
+
+    <!-- Leaderboard Table -->
+    <div class="leaderboard-container">
         <h1 class="leaderboard-header"><i class="fas fa-trophy"></i> Society Leaderboard</h1>
-
-        <!-- Submit Event Section -->
-        <div class="event-form">
-            <h2>Submit Event Info</h2>
-            <div class="form-group">
-                <select id="societyName">
-                    <option value="">Select Society</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <input type="text" id="eventName" placeholder="Event Name">
-            </div>
-            <div class="form-group">
-                <input type="text" id="venue" placeholder="Venue">
-            </div>
-            <div class="form-group">
-                <input type="datetime-local" id="time">
-            </div>
-            <div class="form-group">
-                <input type="file" id="eventFiles" multiple accept=".pdf,.xlsx,.jpg,.png">
-                <small>Upload images, badge plans (PDF/Excel)</small>
-            </div>
-            <button class="submit-btn" onclick="submitEvent()">Submit Event</button>
-        </div>
-
-        <!-- Leaderboard Table -->
-        <div class="leaderboard-container" style="display: inline-flexbox">
-            <table class="leaderboard-table">
-                <thead>
-                    <tr>
-                        <th>Rank</th>
-                        <th>Society</th>
-                        <th>Points</th>
-                        <th>Badge</th>
-                    </tr>
-                </thead>
-                <tbody id="leaderboard"></tbody>
-            </table>
-        </div>
+        <table class="leaderboard-table">
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Society</th>
+                    <th>Points</th>
+                    <th>Badge</th>
+                </tr>
+            </thead>
+            <tbody id="leaderboard"></tbody>
+        </table>
     </div>
 
     <!-- Include leaderboard.js -->
@@ -72,6 +56,31 @@
             leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || {};
             updateLeaderboard();
         });
-        </script>
+    </script>
+
+    <!-- Submit Event Section -->
+    <div class="event-form" id ="submitEvent">
+        <h1><i class="fas fa-calendar-plus"></i> Submit Event Info</h1>
+        <div class="form-group">
+            <select id="societyName">
+                <option value="">Select Society</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <input type="text" id="eventName" placeholder="Event Name">
+        </div>
+        <div class="form-group">
+            <input type="text" id="venue" placeholder="Venue">
+        </div>
+        <div class="form-group">
+            <input type="datetime-local" id="time">
+        </div>
+        <div class="form-group">
+            <input type="file" id="eventFiles" multiple accept=".pdf,.xlsx,.jpg,.png">
+            <small>Upload images, budget plans (PDF/Excel)</small>
+        </div>
+        <button class="submit-btn" onclick="submitEvent()">Submit Event</button>
+    </div>
+
 </body>
 </html>

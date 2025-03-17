@@ -7,7 +7,91 @@ document.addEventListener('DOMContentLoaded', () => {
     showSection('dashboard');
     loadPendingEvents();
     loadLeaderboard();
+    loadDashboardStats();
+    loadNotifications();
+    loadSocietyProgressChart();
+    loadNotificationSetting();
 });
+
+
+// Load Total Societies & Events
+function loadDashboardStats() {
+    let societies = JSON.parse(localStorage.getItem("societies")) || [];
+    let events = JSON.parse(localStorage.getItem("events")) || [];
+
+    document.getElementById("totalSocieties").innerText = societies.length;
+    document.getElementById("totalEvents").innerText = events.length;
+}
+
+
+// Load Society Progress Chart
+// function loadSocietyProgressChart() {
+//     let societies = JSON.parse(localStorage.getItem("societies")) || [];
+//     let events = JSON.parse(localStorage.getItem("events")) || [];
+
+//     console.log("Societies:", societies);
+//     console.log("Events:", events);
+
+//     if (societies.length === 0 || events.length === 0) {
+//         console.error("Error: No data available for chart.");
+//         return; // Exit function if data is missing
+//     }
+
+//     let societyLabels = societies.map(s => s.societyName);
+//     let eventCounts = societyLabels.map(label => 
+//         events.filter(e => e.society === label).length
+//     );
+
+//     console.log("Society Labels:", societyLabels);
+//     console.log("Event Counts:", eventCounts);
+
+//     let ctx = document.getElementById("societyProgressChart");
+//     if (!ctx) {
+//         console.error("Error: Canvas element 'societyProgressChart' not found.");
+//         return;
+//     }
+
+//     new Chart(ctx.getContext("2d"), {
+//         type: "bar",
+//         data: {
+//             labels: societyLabels,
+//             datasets: [{
+//                 label: "Events Held",
+//                 data: eventCounts,
+//                 backgroundColor: "#ffcb43",
+//                 borderColor: "#c78209",
+//                 borderWidth: 1
+//             }]
+//         },
+//         options: {
+//             responsive: true,
+//             scales: {
+//                 y: { beginAtZero: true }
+//             }
+//         }
+//     });
+// }
+
+
+// Load Notifications
+function loadNotifications() {
+    let notifications = [
+        { message: "New society registration request", status: "new" },
+        { message: "Upcoming event approval pending", status: "new" },
+        { message: "Scholarship applications open" },
+        { message: "Next meeting scheduled for Friday" }
+    ];
+
+    let notificationList = document.getElementById("notificationList");
+    notificationList.innerHTML = "";
+    notifications.forEach(notification => {
+        let li = document.createElement("li");
+        li.innerText = notification.message;
+        if (notification.status === "new") li.classList.add("new");
+        notificationList.appendChild(li);
+    });
+}
+
 
 function loadSocieties() {
     let societies = JSON.parse(localStorage.getItem("societies")) || [];
@@ -297,13 +381,34 @@ function loadUsers() {
     const tableBody = document.querySelector("#userTable tbody");
     tableBody.innerHTML = "";
 
-    users.forEach(user => {
+    users.forEach((user, index) => {
         let row = tableBody.insertRow();
         row.innerHTML = `
             <td>${user.username}</td>
             <td>${user.email}</td>
+            <td>
+                <button onclick="deleteAdmin(${index})">Delete Admin</button>
+            </td>
         `;
     });
+}
+
+
+function deleteAdmin(index) {
+    const password = prompt("Enter deletion password:");
+    if (password !== "uop-sms") {
+        alert("Incorrect password. Deletion canceled.");
+        return;
+    }
+
+    if (confirm("Are you sure you want to delete this admin?")) {
+        let users = JSON.parse(localStorage.getItem("users")) || [];
+        const deletedUser = users.splice(index, 1)[0];
+        localStorage.setItem("users", JSON.stringify(users));
+        logActivity(`Admin deleted: ${deletedUser.username} (${deletedUser.email})`);
+        loadUsers();
+        alert("Admin successfully deleted.");
+    }
 }
 
 function addAdmin() {
@@ -364,7 +469,9 @@ function validateAdmin() {
         // alert("Welcome, " + username + "!");
         document.getElementById("adminLoginPopup").style.display = "none"; // Close popup
           // Add login activity log
-        logActivity(`Admin login: ${username} (${new Date().toLocaleString()})`);
+        // logActivity(`Admin login: ${username} (${new Date().toLocaleString()})`);
+        // Inside validateAdmin() function
+        logActivity(`Admin login: ${username} (${new Date().toLocaleString()}) [Password Verified]`);
     }
 }
 
@@ -789,4 +896,121 @@ function searchLeaderboard() {
         let societyName = row.cells[0].textContent.toLowerCase(); // Society Name column
         row.style.display = societyName.includes(searchText) ? "" : "none";
     });
+}
+
+
+// Add to DOMContentLoaded
+loadEventPermissions();
+
+// New functions
+function loadEventPermissions() {
+    const pending = JSON.parse(localStorage.getItem("pendingEventPermissions")) || [];
+    const accepted = JSON.parse(localStorage.getItem("acceptedEvents")) || [];
+    
+    // Load pending
+    const pendingBody = document.querySelector("#pendingPermissions");
+    pendingBody.innerHTML = pending.map((event, index) => `
+        <tr>
+            <td>${event.societyName}</td>
+            <td>${event.eventName}</td>
+            <td>${event.eventDate}</td>
+            <td>${event.location}</td>
+            <td>Rs.${event.budget}</td>
+            <td>
+                <button onclick="handlePermission(${index}, true)">Accept</button>
+                <button onclick="handlePermission(${index}, false)">Reject</button>
+            </td>
+        </tr>
+    `).join('');
+
+    // Load accepted
+    const acceptedBody = document.querySelector("#acceptedEvents");
+    acceptedBody.innerHTML = accepted.map(event => `
+        <tr>
+            <td>${event.societyName}</td>
+            <td>${event.eventName}</td>
+            <td>${event.eventDate}</td>
+            <td>${event.location}</td>
+        </tr>
+    `).join('');
+}
+
+function handlePermission(index, isAccepted) {
+    const pending = JSON.parse(localStorage.getItem("pendingEventPermissions")) || [];
+    const accepted = JSON.parse(localStorage.getItem("acceptedEvents")) || [];
+    
+    const event = pending[index];
+    
+    if(isAccepted) {
+        accepted.push(event);
+        // Add to upcoming events
+        const events = JSON.parse(localStorage.getItem("events")) || [];
+        events.push({
+            name: event.eventName,
+            date: event.eventDate,
+            society: event.societyName
+        });
+        localStorage.setItem("events", JSON.stringify(events));
+    }
+    
+    pending.splice(index, 1);
+    
+    localStorage.setItem("pendingEventPermissions", JSON.stringify(pending));
+    localStorage.setItem("acceptedEvents", JSON.stringify(accepted));
+    
+    loadEventPermissions();
+}
+
+function toggleDarkMode() {
+    document.body.classList.toggle("dark-mode");
+    localStorage.setItem("darkMode", document.body.classList.contains("dark-mode"));
+}
+
+function loadDarkMode() {
+    if (localStorage.getItem("darkMode") === "true") {
+        document.body.classList.add("dark-mode");
+    }
+}
+
+function changeAdminPassword() {
+    let currentPass = document.getElementById("currentPassword").value;
+    let newPass = document.getElementById("newPassword").value;
+    let storedPass = localStorage.getItem("adminPassword");
+
+    if (currentPass !== storedPass) {
+        alert("Incorrect current password");
+        return;
+    }
+
+    localStorage.setItem("adminPassword", newPass);
+    alert("Password changed successfully!");
+}
+
+document.addEventListener("DOMContentLoaded", loadDarkMode);
+
+function toggleNotifications() {
+    let notificationsEnabled = localStorage.getItem("notificationsEnabled") === "true";
+    localStorage.setItem("notificationsEnabled", !notificationsEnabled);
+}
+
+function loadNotificationSetting() {
+    if (localStorage.getItem("notificationsEnabled") === "false") {
+        clearInterval(notificationInterval);
+    }
+}
+
+// Show Logout Confirmation Popup
+function showLogoutPopup() {
+    document.getElementById("logoutPopup").style.display = "flex";
+}
+
+// Close Logout Popup
+function closeLogoutPopup() {
+    document.getElementById("logoutPopup").style.display = "none";
+}
+
+// Confirm Logout and Refresh Page
+function confirmLogout() {
+    localStorage.removeItem("currentAdmin"); // Clear admin session (optional)
+    location.reload(); // Refresh the page
 }
