@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Event Permission Application</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src = "Event_Permision.js"></script>
+    <link rel="stylesheet" href="Event_Permision.css">
+    <style>
+        .form-container { max-width: 1000px; margin: 20px auto; padding: 20px; font-family: Arial; }
+        .form-container2 { max-width: 1000px; margin: 20px auto; padding: 20px; font-family: Arial; }
+        .underline { text-decoration: underline; }
+        .form-section { margin: 20px 0; padding: 15px; border: 1px solid #ccc; }
+        table { width: 100%; border-collapse: collapse; margin: 10px 0; }
+        td, th { border: 1px solid #000; padding: 8px; }
+        .input-field { width: 100%; border: none; border-bottom: 1px solid #000; margin: 5px 0; }
+        .radio-group { margin: 10px 0; }
+        .signature-box { height: 50px; border: 1px solid #000; margin: 10px 0; }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <div class = "addingEvent">
+            <h2>Request Permission For Events 📝✅</h2>
+            <a href="home.html" class="cta-button2">Home</a>   
+            <a href="#applicationForm" class="cta-button2">Get Started</a> 
+        </div>
+        <h4>Easily request approval for your events with our streamlined application process. Submit event details, follow guidelines, and get permission quickly. Ensure smooth event planning while staying compliant with the rules! 🎉📋</h4>
+        <span style="color: darkred;">Important:
+            The duly filled application should be forwarded to the Deputy Vice-Chancellor through the Student Services Division for approval at least 07 days prior to the date of the event. The letter of approval will be issued by the Student Services Division.</span>
+   </div>
+    <!-- <div class="form-container">
+        <div class="buttons">      
+            <a href="home.html"><button class="home-btn">Home</button></a>
+            <a href="#main-form">
+                <button class="get-started-btn">Get Started</button>
+            </a> -->
+            <!-- <button onclick="scrollToSection()" class="get-started-btn">Get Started</button>
+
+            <script>
+            function scrollToSection() {
+                document.getElementById("main-form").scrollIntoView({ behavior: "smooth" });
+            }
+            </script> --> 
+    <div class="form-container">
+        <h2 class="underline">APPLICATION FOR PERMISSION FOR FUNCTIONS/EVENTS</h2>
+        
+        <form id="applicationForm">
+            <div class="form-section">
+                <h3>Part I: Applicant Details</h3>
+                <table>
+                    <tr><td>01</td><td>Name of the Society/Com. Union</td><td><input type="text" id="societyName" class="input-field"></td></tr>
+                    <tr><td>02</td><td>Name of the applicant</td><td><input type="text" id="applicantName" class="input-field"></td></tr>
+                    <tr><td>03</td><td>Registration No</td><td><input type="text" id="regNo" class="input-field"></td></tr>
+                    <tr><td>04</td><td>Position</td><td><input type="text" id="position" class="input-field"></td></tr>
+                    <tr><td>05</td><td>Mobile number</td><td><input type="tel" id="mobile" class="input-field"></td></tr>
+                </table>
+            </div>
+
+            <div class="form-section">
+                <h3>Part II: Event Details</h3>
+                <table>
+                    <tr><td>01</td><td>Name/Nature of the Function/Event</td><td><input type="text" id="eventName" class="input-field"></td></tr>
+                    <tr><td>02</td><td>Date</td><td><input type="date" id="eventDate" class="input-field"></td></tr>
+                    <tr><td>03</td><td>Place (Inside/Outside University)</td>
+                        <td>
+                            <select id="location" class="input-field">
+                                <option value="inside">Inside University</option>
+                                <option value="outside">Outside University</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr><td>04</td><td>Late passes required for female residents?</td>
+                        <td>
+                            <input type="radio" name="latePass" value="yes"> Yes
+                            <input type="radio" name="latePass" value="no"> No
+                        </td>
+                    </tr>
+                    <tr><td>05</td><td>Outsiders invited?</td>
+                        <td>
+                            <input type="radio" name="outsiders" value="yes"> Yes
+                            <input type="radio" name="outsiders" value="no"> No
+                        </td>
+                    </tr>
+                    <tr><td>06</td><td>First year students participating?</td>
+                        <td>
+                            <input type="radio" name="firstYear" value="yes"> Yes
+                            <input type="radio" name="firstYear" value="no"> No
+                        </td>
+                    </tr>
+                    <tr><td>07</td><td>Budget Estimate</td><td><input type="number" id="budget" class="input-field"></td></tr>
+                    <tr><td>08</td><td>Fund collection methods</td><td><textarea id="fundMethods" class="input-field"></textarea></td></tr>
+                    <tr><td>09</td><td>Money collected from students</td><td><input type="number" id="studentMoney" class="input-field"></td></tr>
+                </table>
+            </div>
+
+            <div class="form-section">
+                <h3>Part III: Senior Treasurer Recommendation</h3>
+                <table>
+                    <tr><td>Name</td><td><input type="text" id="treasurerName" class="input-field"></td></tr>
+                    <tr><td>Department</td><td><input type="text" id="treasurerDept" class="input-field"></td></tr>
+                    <tr><td>Mobile No</td><td><input type="tel" id="treasurerMobile" class="input-field"></td></tr>
+                    <tr><td>Signature</td><td><div class="signature-box"></div></td></tr>
+                    <tr><td>Date</td><td><input type="date" id="treasurerDate" class="input-field"></td></tr>
+                </table>
+            </div>
+
+            <div class="form-section">
+                <h3>Part IV: Dean/Deputy Proctor Recommendation</h3>
+                <table>
+                    <tr><td>Recommendation</td>
+                        <td>
+                            <input type="radio" name="deanRec" value="yes"> Recommended
+                            <input type="radio" name="deanRec" value="no"> Not Recommended
+                        </td>
+                    </tr>
+                    <tr><td>Signature</td><td><div class="signature-box"></div></td></tr>
+                    <tr><td>Date</td><td><input type="date" id="deanDate" class="input-field"></td></tr>
+                </table>
+            </div>
+
+            <div class="form-section">
+                <h3>Part VII: Premises Permission</h3>
+                <table>
+                    <tr><td>Premises Details</td><td><textarea id="premisesDetails" class="input-field"></textarea></td></tr>
+                    <tr><td>Dates</td><td>
+                        From: <input type="date" id="premisesFrom">
+                        To: <input type="date" id="premisesTo">
+                    </td></tr>
+                    <tr><td>Officer Name</td><td><input type="text" id="officerName" class="input-field"></td></tr>
+                    <tr><td>Designation</td><td><input type="text" id="officerDesignation" class="input-field"></td></tr>
+                    <tr><td>Signature</td><td><div class="signature-box"></div></td></tr>
+                </table>
+            </div>
+
+            <button type="button" onclick="generatePDF()">Generate PDF</button>
+            <button type="button" onclick="exportWord()">Export Word</button>
+            <!-- Replace the PDF/Word buttons with -->
+            <button type="button" onclick="submitPermissionRequest()">Submit Request</button>
+        </form>
+    </div>
+
+    <script>
+        function generatePDF() {
+            const doc = new jspdf.jsPDF();
+            const formData = {
+                societyName: document.getElementById('societyName').value,
+                applicantName: document.getElementById('applicantName').value,
+                eventName: document.getElementById('eventName').value,
+                budget: document.getElementById('budget').value
+            };
+
+            doc.text(20, 20, `Society Name: ${formData.societyName}`);
+            doc.text(20, 30, `Applicant Name: ${formData.applicantName}`);
+            doc.text(20, 40, `Event Name: ${formData.eventName}`);
+            doc.text(20, 50, `Budget: Rs.${formData.budget}`);
+            
+            doc.save('permission-application.pdf');
+        }
+
+        function exportWord() {
+            const content = document.getElementById('applicationForm').outerHTML;
+            const blob = new Blob([content], {type: 'application/msword'});
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'application.doc';
+            a.click();
+        }
+    </script>
+</body>
+</html>

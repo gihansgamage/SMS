@@ -7,9 +7,58 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Regulations Modal -->
+    <div id="regulationsModal" class="modal">
+        <div class="modal-content">
+            <h2>REGULATIONS FOR REGISTRATION AND RENEWAL OF STUDENT SOCIETIES (2024/2025)</h2>
+            
+            <div class="regulations-text">
+                <h3>1. Establishment of a New Student Society</h3>
+                <ol type="i">
+                    <li>Submit a request letter (via Faculty Dean or Deputy Vice-Chancellor for university-wide societies) to obtain Vice-Chancellor approval.</li>
+                    <li>Senior Treasurer and Advisory Board must draft a constitution with aims/objectives aligned with the University's mission.</li>
+                    <li>Membership requirements:
+                        <ul>
+                            <li>Subject-related societies: 25+ members</li>
+                            <li>Non-subject societies: 40+ members</li>
+                            <li>University-wide societies: 50+ members</li>
+                        </ul>
+                    </li>
+                    <li>Secretary and Junior Treasurer cannot be final-year students</li>
+                    <li>Membership restricted to internal students; no external affiliations</li>
+                    <li>Submit approved constitution, SS-01 form, and AGM minutes to the Assistant Registrar by 31.12.2024</li>
+                    <li>No late applications. Governing Council grants final approval</li>
+                </ol>
+
+                <!-- <h3>2. Renewal of Societies</h3>
+                <ol type="i">
+                    <li>Submit renewal applications (SS-01 form) between 14.10.2024–31.12.2024</li>
+                    <li>Include office bearers' details, Senior Treasurer's certification, and Advisory Board recommendations</li>
+                    <li>Attach financial statements (2023/2024) and progress reports endorsed by the Senior Treasurer</li>
+                </ol> -->
+            </div>
+
+            <div class="acceptance-section">
+                <!-- <label style="color: #007bff;"> -->
+
+                <div class ="acceptance-section2">
+                        <input type="checkbox" id="acceptCheckbox" style="color: dodgerblue;"> 
+                        
+                    <!-- </label> -->
+                </div>
+                <span style="color: rgb(13, 94, 175);"><strong>I have read and agree to comply with all regulations.</strong></span>
+                <p></p>
+                <div class="modal-buttons">
+                    <button class="btn secondary1" onclick="declineRegulations()">Reject</button>
+                    <button class="btn primary1" id="acceptButton" disabled onclick="acceptRegulations()">Accept</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="container">
         <!-- Office Use Section -->
-        <div class="office-use">
+        <div class="office-use" style="display: none;">
             <h2>FOR OFFICE USE ONLY</h2>
             <div class="form-row">
                 <label>FILE NUMBER: 
@@ -24,8 +73,69 @@
             </div>
         </div>
 
+        <!--Cover-->
+
+        <div class="office-use">
+            <h1>Welcome to the <span>Society Management System</span>🎉</h1>
+            <p class="welcome-text">We appreciate your initiative in starting a new society. Let's make a difference together!</p>
+        
+            <div class="motivation-box">
+                <p><strong>"Leadership begins with a vision. Inspire. Organize. Achieve."</strong></p>
+            </div>
+        
+            <h2>Regulations & Guidelines</h2>
+            <ul class="guidelines">
+                <li> Fill in <strong>accurate details</strong> to avoid delays.</li>
+                <li> Submit a <strong>hard copy</strong> with required signatures before the deadline.</li>
+                <li> Do <strong>not alter</strong> any details in the hard copy.</li>
+                <li> Ensure the form is submitted <strong>in one attempt</strong>—review all details carefully.</li>
+                <li> This process adheres to <strong>University Regulations</strong> and policies.</li>
+            </ul>
+        
+            <div class="buttons">      
+                <a href="home.html"><button class="home-btn">Home</button></a>
+                <!-- <a href="#main-form">
+                    <button class="get-started-btn">Get Started</button>
+                </a> -->
+                <button onclick="scrollToSection()" class="get-started-btn">Get Started</button>
+
+                <script>
+                function scrollToSection() {
+                    document.getElementById("main-form").scrollIntoView({ behavior: "smooth" });
+                }
+                </script>
+                
+            </div>
+        </div>
+        
+        
         <!-- Main Form -->
-        <div class="main-form">
+        <div class="main-form" id = "main-form">
+            <form id="applicationForm">
+                <div class="form-section2">
+                    <h3>Applicant Details</h3>
+            
+                    <label for="applicantName">01. Name of the applicant</label>
+                    <input type="text" id="applicantName" class="input-field">
+            
+                    <label for="regNo">02. Registration No</label>
+                    <input type="text" id="regNo" class="input-field">
+            
+                    <label for="position">03. Position</label>
+                    <input type="text" id="position" class="input-field">
+            
+                    <label for="mobile">04. Mobile number</label>
+                    <input type="tel" id="mobile" class="input-field">
+
+                    <label for="email">05. Email</label>
+                    <input type="email" id="email" class="input-field">
+                </div>
+            </form>
+            
+            <div class="office-use">
+                <h2>Application For Registration Of Student Society</h2>
+            </div>
+
             <!-- Sections 1-5 with improved structure -->
             <div class="form-section">
                 <h3>1. Name of the Society</h3>
@@ -47,9 +157,14 @@
                         <option>Mr.</option>
                         <option>Mrs.</option>
                         <option>Miss</option>
-                    </select>
+                    </select>  
                     <input type="text" id="treasurerName" placeholder="Full Name" required>
+                    <input type ="text" id="treasurerDeaignation" placeholder="Designation/Department">
                     <input type="email" id="treasurerMail" placeholder="Email" required>
+                    <input type="text" id="treasurerAddress" placeholder="Private Address">
+                    <input type="tel" id="treasurerOfficeNo" placeholder="Office Tel No">
+                    <input type="tel" id="treasurerResidenceNo" placeholder="Residence Tel No">
+                    <input type="tel" id="treasurerMobileNo" placeholder="Mobile Tel No">
                 </div>
                 <!-- Add other treasurer fields -->
             </div>
@@ -75,17 +190,119 @@
                     <input type="text" id="bankName" placeholder="Bank Name">
                 </div>
             </div>
+
+            <!--President Details-->
+            <div class="form-section grid-section">
+                <h3>6. Office Bearers </h3>
+                <h3>6.1</h3>
+                <h3>President </h3>
+                <div class="form-row">
+                    <input type="text" id="presidentRegNo" placeholder="Student Reg No">
+                    <input type="text" id="presidentName" placeholder="Name">
+                    <input type="text" id="presidentAddress" placeholder="Permanent Address">
+                    <input type="tel" id="presidentResidenceNo" placeholder="Residence Tel No">
+                    <input type="tel" id="presdentMobileNo" placeholder="Mobile No">
+                </div>
+                <br>
+                <h3>Vise President </h3>
+                <div class="form-row">
+                    <input type="text" id="visePresidentRegNo" placeholder="Student Reg No">
+                    <input type="text" id="visePresidentName" placeholder="Name">
+                    <input type="text" id="visePresidentAddress" placeholder="Permanent Address">
+                    <input type="tel" id="visePresidentResidenceNo" placeholder="Residence Tel No">
+                    <input type="tel" id="visePresdentMobileNo" placeholder="Mobile No">
+                </div>
+                <br>
+                <h3>Junior Treasurer </h3>
+                <div class="form-row">
+                    <input type="text" id="juniorTreasurerRegNo" placeholder="Student Reg No">
+                    <input type="text" id="juniorTreasureName" placeholder="Name">
+                    <input type="text" id="juniorTreasureAddress" placeholder="Permanent Address">
+                    <input type="tel" id="vjuniorTreasureResidenceNo" placeholder="Residence Tel No">
+                    <input type="tel" id="juniorTreasureMobileNo" placeholder="Mobile No">
+                </div>
+                <br>
+                <h3>Secretary </h3>
+                <div class="form-row">
+                    <input type="text" id="secretaryRegNo" placeholder="Student Reg No">
+                    <input type="text" id="secretaryName" placeholder="Name">
+                    <input type="text" id="secretaryAddress" placeholder="Permanent Address">
+                    <input type="tel" id="secretaryResidenceNo" placeholder="Residence Tel No">
+                    <input type="tel" id="secretaryMobileNo" placeholder="Mobile No">
+                </div>
+                <br>
+                <h3>Junior Secretary </h3>
+                <div class="form-row">
+                    <input type="text" id="jointSecretaryRegNo" placeholder="Student Reg No">
+                    <input type="text" id="jointSecretaryName" placeholder="Name">
+                    <input type="text" id="jointSecretaryAddress" placeholder="Permanent Address">
+                    <input type="tel" id="jointSecretaryResidenceNo" placeholder="Residence Tel No">
+                    <input type="tel" id="jointSecretaryMobileNo" placeholder="Mobile No">
+                </div>
+                <br>
+                <h3>Editor</h3>
+                <div class="form-row">
+                    <input type="text" id="editorRegNo" placeholder="Student Reg No">
+                    <input type="text" id="editorName" placeholder="Name">
+                    <input type="text" id="editorAddress" placeholder="Permanent Address">
+                    <input type="tel" id="editorResidenceNo" placeholder="Residence Tel No">
+                    <input type="tel" id="editorMobileNo" placeholder="Mobile No">
+                </div>
+
+                            <!-- Committee Mameber Section -->
+            <br>
+                <h3>6.2 Committee Mambers as per Constitution of the Society</h3>
+                <div id="committeeMembers">
+                    <div class="cm-row">
+                        <input type="text" placeholder="Student Reg. No" class="cm-designation">
+                        <input type="text" placeholder="Name" class="cm-name">               
+                    </div>
+                </div>
+                <button class="add-btn" onclick="addCMRow()">+ Add Member</button>
+            <br>
+            <br>
+            <h3>6.3 Date of the Annual General Meeting held : </h3>
+            <div class="form-row">
+                <input type="date" id="agmDate" >             
+            </div>
         </div>
+            <!--No of members-->
+        <div class="form-section grid-section">
+                <h3>7. List of Registered Members</h3>
+                <!-- <div class="form-row">
+                    <input type="text" id="noOfMembers">
+                </div> -->
+                <div id="registeredMembers">
+                    <div class="rm-row">
+                        <span class="rm-number">1</span>
+                        <input type="text" placeholder="Student Reg No" class="rm-month">
+                        <input type="text" placeholder="Name" class="rm-name">               
+                    </div>
+                </div>
+                <button class="add-btn" onclick="addRegisteredMemberRow()">+ Add Mameber</button>
+            </div>
 
+        <!--Planned Activity-->
+        <div class="form-section grid-section">
+            <h3>8. Please indicate the proposed programmes earmarked by the Society for the next year(briefly)</h3>
+            <div id="plannedActivity">
+                <div class="plannedActivity-row">
+                    <input type="month" placeholder="Month" class="plannedActivity-month">
+                    <input type="text" placeholder="Planned Activity" class="plannedActivity-name">               
+                </div>
+            </div>
+            <button class="add-btn" onclick="addPlannedActivityRow()">+ Add Planned Activity</button>
+        </div>
+    </div>
+</div>
 
-<!---------------------------------------------------------------------------------->
-
-<!----------------------------------------------------->
+<div id="messageContainer" class="message-container"></div>
 
         <!-- Action Buttons -->
         <div class="action-btns">
-            <button class="btn secondary" onclick="saveDraft()">Sending for Approval</button>
-            <button class="btn primary" onclick="generatePDF()">Download PDF</button>
+            <button class="btn secondary" onclick="saveDraft()">Step 1 : Send for Approval</button>
+            <!-- <p>then</p> -->
+            <button class="btn primary" onclick="generatePDF()">Step 2 : Download Application</button>
         </div>
     </div>
     <!-- Required Libraries -->
@@ -93,9 +310,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
     <script src="script.js"></script>
-    <script>
-    window.location.href = "home.html";
-</script>
-
 </body>
 </html>

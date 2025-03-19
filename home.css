@@ -1,16 +1,22 @@
+/* Base Styles */
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
     margin: 0;
     padding: 0;
     background-color: #f8f9fa;
     text-align: center;
 }
 
-/* Header Styling */
+/* Modern Header */
 header {
-    background: #007bff;
+    background: linear-gradient(135deg, #7c0606, #8f3a3a);
     color: white;
     padding: 20px;
+    box-shadow: 0 2px 15px rgba(226, 223, 8, 0.1);
+    position: relative;
+    z-index: 1000;
 }
 
 nav ul {
@@ -29,15 +35,86 @@ nav ul li a {
     font-weight: bold;
     padding: 10px 15px;
     border-radius: 5px;
-    transition: background 0.3s ease;
+    position: relative;
+    /* transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); */
 }
 
-/* Hero Section */
-#hero {
-    background: url('https://i.pinimg.com/736x/6e/09/0d/6e090dfdb6a6cbe5e671e2ed05b33f45.jpg') center/cover no-repeat;
-    color: #000000;
-    padding: 80px 20px;
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: #ffdd40;
+    transition: all 0.3s ease;
 }
+
+nav ul li a:hover::after {
+    width: 70%;
+    left: 15%;
+}
+
+.admin-btn {
+    background: #28a745;
+    margin-left: 20px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+ul li a:hover::after {
+    color: #7c0606;
+}
+
+/* Enhanced Hero Section */
+#hero {
+    background: url('https://www.srisurf.info/wp-content/uploads/2024/02/exploring-university-peradeniya-696x392.jpg') center/cover no-repeat;
+    color: white;
+    padding: 80px 20px;
+    position: relative;
+    text-shadow: 0px 3px 4px rgb(255, 200, 18);
+}
+
+#hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(238, 231, 231, 0.158);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 100;
+}
+
+#particles-js {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+#hero2 {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+}
+
 
 .cta-button {
     background: #ffcc00;
@@ -47,19 +124,101 @@ nav ul li a {
     font-weight: bold;
     border-radius: 5px;
     transition: background 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 204, 0, 0.3);
+    letter-spacing: 0.5px;
+    margin-bottom: 20px;
 }
 
 .cta-button:hover {
-    background: #e6b800;
+    background: #ffcc00;
+    border-radius: 50px;
+    padding: 15px 75px;
+    box-shadow: 0px 8px 15px rgba(255, 204, 0, 0.4);
+    transform: scale(1.05);
+    transition: all 0.3s ease-in-out;
 }
 
-/* Block Sections */
+
+.cta-button2 {
+    background: #ffcc00;
+    color: black;
+    padding: 10px 55px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 204, 0, 0.3);
+    letter-spacing: 0.5px;
+    width: 120px; /* Set a fixed width */
+    text-align: center; /* Ensure text stays centered */
+    display: inline-block; /* Ensures width applies correctly */
+}
+
+
+.cta-button2:hover {
+    background: #03a534;
+    border-radius: 50px;
+}
+
+.fade-in{
+    margin-bottom: 20px;
+}
+
+.fade-in1{
+    margin-left: 20px;
+}
+
+
+/* Society Count Animation */
+/* #societyCount {
+    background:  #7c0606;
+    color: white;
+    padding: 40px 20px;
+    margin: 40px auto;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    text-align: center;
+    width: 1200px;
+} */
+
+.count-container {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin: 20px 0;
+ 
+}
+
+.count-text {
+    font-size: 2rem;
+    opacity: 0.9;
+}
+
+#societyCount {
+    /* Previous styles */
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 1s ease-out;
+}
+
+#societyCount.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Modern Block Sections */
 .block-section {
-    width: 100%;
+    width: 95%;
+    max-width: 1200px;
     padding: 50px 0;
     background: white;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    margin-bottom: 30px;
+    margin: 40px auto;
+    transition: transform 0.3s ease;
+    border-radius: 15px;
+}
+
+.block-section:hover {
+    transform: translateY(-5px);
 }
 
 .block-content {
@@ -67,12 +226,42 @@ nav ul li a {
     margin: 0 auto;
 }
 
-/* Registered Societies Table */
+.block-content-upcoming{
+    display: inline-flex;
+    width: 80%;
+    margin: 0 auto;
+
+}
+
+.block-section2 {
+    width: 95%;
+    max-width: 250px;
+    max-height: 400px;
+    padding: 50px 20px;
+    background: white;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 50px auto;
+    transition: transform 0.3s ease;
+    border-radius: 15px;
+    display: inline-block;
+}
+
+.block-section2:hover {
+    transform: translateY(-5px);
+}
+
+/* .fade-in{
+    margin : 20px 30px;
+} */
+/* Enhanced Table Design */
 table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
     background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 1px 15px rgba(0,0,0,0.05);
 }
 
 th, td {
@@ -83,28 +272,314 @@ th, td {
 }
 
 th {
-    background: #007bff;
+    background: linear-gradient(135deg, #7c0606, #8f3a3a);
     color: white;
     font-weight: bold;
+    letter-spacing: 0.5px;
 }
 
-/* Upcoming Events */
-.event-container {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    padding: 20px;
+tr:nth-child(even) {
+    background-color: #f8f9fa;
 }
 
+/* Improved Event Cards */
 .event-card {
     background: white;
     padding: 20px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     width: 250px;
     border-radius: 10px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.event-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
 }
 
 .event-card img {
     width: 100%;
     border-radius: 10px;
+    height: 180px;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+
+/* Society Cards */
+.society-card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    margin: 15px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+    flex: 1 1 250px;
+}
+
+.society-card:hover {
+    transform: scale(1.02);
+}
+
+/* Responsive Grid Layout */
+#featuredSocietyList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Typography */
+h1, h2 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+}
+
+h2 {
+    color: #2c3e50;
+    margin-bottom: 30px;
+    font-size: 2.2rem;
+}
+
+#upButton {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background-color: #800000;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 24px;
+    cursor: pointer;
+    display: none;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    transition: opacity 0.3s;
+}
+
+#upButton:hover {
+    transform: translateY(-5px);
+}
+
+
+footer {
+    background-color: #7c0606; /* Dark Maroon */
+    color: white;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.footer-content {
+    flex: 1;
+    min-width: 300px;
+    padding-right: 20px;
+}
+
+.footer-content h3,
+.footer-form h3 {
+    margin-bottom: 10px;
+    font-size: 1.5em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.footer-content p {
+    margin: 5px 0;
+}
+
+.footer-content a {
+    color: #ffcb43; /* Yellow */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.footer-content i {
+    color: #ffcb43; /* Icon color */
+    margin-right: 5px;
+}
+
+/* Social Media Icons */
+.social-icons {
+    margin-top: 15px;
+}
+
+.social-icons a {
+    color: white;
+    font-size: 20px;
+    margin: 0 10px;
+    display: inline-block;
+    transition: 0.3s;
+}
+
+.social-icons a:hover {
+    color: #ffcb43;
+    transform: scale(1.2);
+}
+
+/* Contact Form */
+.footer-form {
+    flex: 1;
+    min-width: 150px;
+    background: #800000;
+    padding: 15px;
+    border-radius: 20px;
+    justify-content: center;
+}
+
+.footer-form form {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-form input,
+.footer-form textarea {
+    width: 80%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.footer-form button {
+    background-color: #ffcb43;
+    width: 30%;
+    color: #800000;
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.footer-form button:hover {
+    background-color: #c78209;
+    color: white;
+}
+
+/* Footer Bottom */
+.footer-bottom {
+    text-align: center;
+    border-top: 1px solid #ffcb43;
+    padding-top: 10px;
+    margin-top: 15px;
+    font-size: 0.9em;
+}
+
+
+/*Notice Board*/
+/* Block-style Notice Board */
+.notice-section {
+    width: 95%;
+    max-width: 1200px;
+    padding: 50px 0;
+    background: white;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 40px auto;
+    transition: transform 0.3s ease;
+    border-radius: 15px;
+}
+
+/* Hover Effect */
+.notice-section:hover {
+    transform: translateY(-5px);
+}
+
+/* Content Alignment */
+.notice-content {
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* Notice Board Heading */
+.notice-content h2 {
+    color: #c78209;
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+/* Notice Content */
+/* .notice-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    max-height: 250px;
+    overflow-y: auto;
+    box-shadow: inset 0px 0px 8px rgba(0, 0, 0, 0.1);
+} */
+
+/* Notice List */
+.notice-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Each Notice */
+.notice-content ul li {
+    font-size: 16px;
+    color: #333;
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    transition: all 0.3s ease;
+}
+
+/* Highlight New Notices */
+.new-notice {
+    font-weight: bold;
+    color: #d00000;
+    background: #fff5f5;
+    border-left: 5px solid #d00000;
+    padding-left: 10px;
+}
+
+/* Last Item Without Border */
+.notice-content ul li:last-child {
+    border-bottom: none;
+}
+
+/* Hover Effect */
+.notice-content ul li:hover {
+    background: rgba(255, 203, 67, 0.2);
+    cursor: pointer;
+}
+
+/* Notice Subheading */
+.notice-content h4 {
+    font-size: 14px;
+    color: #c78209;
+    margin: 10px 0;
+    font-style: italic;
+}
+
+/* Limit leaderboard to 3 entries */
+#societyLeaderboard .leaderboard-table tbody tr:nth-child(n+4) {
+    display: none;
+}
+
+/* Medal colors */
+.gold { color: #FFD700; }
+.silver { color: #C0C0C0; }
+.bronze { color: #CD7F32; }
+
+.fa-medal {
+    font-size: 1.5em;
+}
+
+.addingEvent {
+    display: flex;
+    align-items: center;
+    text-align: left;
+    gap: 10px; /* Adds space between the button and text */
 }

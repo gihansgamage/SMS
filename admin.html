@@ -15,6 +15,7 @@
             <li><a href="#" class="tab-button" onclick="showSection('pendingSocieties')">Pending Societies</a></li>
             <li><a href="#" onclick="showSection('societyList')">Society List</a></li>
             <li><a href="#"  onclick="showSection('communicationCenter')">Communication Center</a></li>
+            <li><a href="#" onclick="showSection('eventPermissions')">Event Permissions</a></li>
             <li><a href="#" class="tab-button" onclick="showSection('scoreboard')">Leaderboard</a></li>
             <li><a href="#" class="tab-button" onclick="showSection('userManagement')">User Management</a></li>
             <li><a href="#" class="tab-button" onclick="showSection('activityLog')">Activity Log</a></li>
@@ -27,6 +28,28 @@
         <div id="dashboard" class="section">
             <h3>Welcome to the Admin Dashboard</h3>
             <p>Manage society registrations efficiently.</p>
+
+            <div class="dashboard-stats">
+                <div class="stat-card">
+                    <h3>Total Societies</h3>
+                    <p id="totalSocieties">0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Total Events</h3>
+                    <p id="totalEvents">0</p>
+                </div>
+            </div>
+            
+            <!-- Society Progress Graph
+            <div class="chart-container">
+                <canvas id="societyProgressChart"></canvas>
+            </div>
+             -->
+            
+            <!-- Notifications -->
+            <h3>Notifications</h3>
+            <ul id="notificationList"></ul>
+
        
 <!-- Admin Login Popup -->
     <div id="adminLoginPopup" class="popup">
@@ -99,7 +122,7 @@
             <span class="close" onclick="closeModal()">&times;</span>
             <h2>Society Details</h2>
             <p id="societyDetails"></p>
-            <button onclick="downloadSocietyPDF()">Download PDF</button>
+            <button onclick="downloadPDF()">Download PDF</button>
         </div>
     </div>
         </div>
@@ -112,6 +135,7 @@
                     <tr>
                         <th>Username</th>
                         <th>Email</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -135,15 +159,82 @@
             <button onclick="sendEmail()">Send Email</button>
         </div>
 
+        <!-- Add new section -->
+<div id="eventPermissions" class="section" style="display:none;">
+    <h3>Pending Event Permissions</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Society</th>
+                <th>Event Name</th>
+                <th>Date</th>
+                <th>Venue</th>
+                <th>Budget</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="pendingPermissions"></tbody>
+    </table>
+
+    <h3>Accepted Events</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Society</th>
+                <th>Event Name</th>
+                <th>Date</th>
+                <th>Venue</th>
+            </tr>
+        </thead>
+        <tbody id="acceptedEvents"></tbody>
+    </table>
+</div>
+
 
         <div id="activityLog" class="section" style="display:none;">
             <h3>Activity Log</h3>
             <ul id="logList"></ul>
         </div>
 
+        <!-- Updated Settings Section -->
         <div id="settings" class="section" style="display:none;">
             <h3>Settings</h3>
             <p>Manage application settings here.</p>
+            
+            <!-- Dark Mode Toggle -->
+            <label class="switch">
+                <input type="checkbox" id="darkModeToggle" onclick="toggleDarkMode()">
+                <span class="slider round"></span>
+            </label>
+            <span>Dark Mode</span>
+            
+            <!-- Notifications Toggle -->
+            <h4>Notifications</h4>
+            <label class="switch">
+                <input type="checkbox" id="notificationToggle" onclick="toggleNotifications()">
+                <span class="slider round"></span>
+            </label>
+            <span>Enable Notifications</span>
+            
+            <!-- Change Admin Password -->
+            <!-- <h4>Change Admin Password</h4>
+            <input type="password" id="currentPassword" placeholder="Current Password">
+            <input type="password" id="newPassword" placeholder="New Password">
+            <button onclick="changeAdminPassword()">Change Password</button> -->
+
+
+            <h4>Logout</h4>
+            <button onclick="showLogoutPopup()">Log Out</button>
+
+            <!-- Logout Confirmation Popup -->
+            <div id="logoutPopup" class="popup">
+                <div class="popup-content">
+                    <h3>Are you sure you want to log out?</h3>
+                    <button onclick="confirmLogout()">Yes, Logout</button>
+                    <button onclick="closeLogoutPopup()">Cancel</button>
+                </div>
+            </div>
+
         </div>
 
 
@@ -201,6 +292,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
     <script src="admin.js"></script>
     <script src="notifications.js"></script>
+    <script  type="module" src="script.js"></script>
     
     <script>
         function showSection(sectionId) {
